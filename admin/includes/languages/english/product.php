@@ -2,10 +2,10 @@
 
 /**
  * @package admin
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Drbyte Wed Oct 10 00:48:49 2018 -0400 Modified in v1.5.6 $
+ * @version $Id: DrByte 2019 May 26 Modified in v1.5.6b $
  */
 
 
@@ -33,6 +33,7 @@ define('TEXT_PRODUCTS_DESCRIPTION', 'Products Description:');
 define('TEXT_PRODUCTS_QUANTITY', 'Products Quantity:');
 define('TEXT_PRODUCTS_MODEL', 'Products Model:');
 define('TEXT_PRODUCTS_IMAGE', 'Products Image:');
+define('TEXT_IMAGE_NONEXISTENT', 'Image does not exist');
 define('TEXT_PRODUCTS_IMAGE_DIR', 'Upload to directory:');
 define('TEXT_PRODUCTS_URL', 'Products URL:');
 define('TEXT_PRODUCTS_URL_WITHOUT_HTTP', '<small>(without http://)</small>');
@@ -70,12 +71,6 @@ define('TEXT_PRODUCT_MORE_INFORMATION', 'For more information, please visit this
 define('TEXT_PRODUCT_DATE_ADDED', 'This product was added to our catalog on %s.');
 define('TEXT_PRODUCT_DATE_AVAILABLE', 'This product will be in stock on %s.');
 
-/* BOF Zen4All - CITTINS - 2 of 2 */
-define('TEXT_ACTION', 'Action');
-define('TEXT_CLICK_TO_ENLARGE', 'larger image');
-define('TEXT_IMAGES_DELETE_NOTE', '');
-/* EOF Zen4All - CITTINS - 2 of 2 */
-
 // meta tags
 define('TEXT_META_TAG_TITLE_INCLUDES', '<strong>Mark What the Product\'s Meta Tag Title Should Include:</strong><br><span class="alert">NOTE: These switches have NO effect if no Keywords or Description text are entered below.</span>');
 define('TEXT_PRODUCTS_METATAGS_PRODUCTS_NAME_STATUS', '<strong>Product Name:</strong>');
@@ -87,5 +82,6 @@ define('TEXT_META_TAGS_TITLE', '<strong>Meta Tag Title:</strong><br><span class=
 define('TEXT_META_TAGS_KEYWORDS', '<strong>Meta Tag Keywords:</strong>');
 define('TEXT_META_TAGS_DESCRIPTION', '<strong>Meta Tag Description:</strong>');
 define('TEXT_META_EXCLUDED', '<span class="alert">EXCLUDED</span>');
+define('TEXT_TITLE_PLUS_TAGLINE', 'Store Title+Tagline'); // this refers to whatever rules the storeowner has built into customizing their catalog /includes/modules/meta_tags.php and its lang file.
 
 define('TEXT_PRODUCTS_PRICE_INFO', 'Price:');

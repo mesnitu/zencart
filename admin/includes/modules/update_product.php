@@ -2,10 +2,10 @@
 
 /**
  * @package admin
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Zen4All Tue Sep 25 09:41:35 2018 +0200 Modified in v1.5.6 $
+ * @version $Id: DrByte 2019 May 25 Modified in v1.5.6b $
  */
 if (!defined('IS_ADMIN_FLAG')) {
   die('Illegal Access');
@@ -13,7 +13,7 @@ if (!defined('IS_ADMIN_FLAG')) {
 if (isset($_GET['pID'])) {
   $products_id = zen_db_prepare_input($_GET['pID']);
 }
-if (isset($_POST['edit_x']) || isset($_POST['edit_y'])) {
+if (isset($_POST['edit']) && $_POST['edit'] == 'edit') {
   $action = 'new_product';
 } elseif ((isset($_POST['products_model']) ? $_POST['products_model'] : '') . (isset($_POST['products_url']) ? implode('', $_POST['products_url']) : '') . (isset($_POST['products_name']) ? implode('', $_POST['products_name']) : '') . (isset($_POST['products_description']) ? implode('', $_POST['products_description']) : '') != '') {
   $products_date_available = zen_db_prepare_input($_POST['products_date_available']);
@@ -78,7 +78,7 @@ if (isset($_POST['edit_x']) || isset($_POST['edit_y'])) {
     ///////////////////////////////////////////////////////
   } elseif ($action == 'update_product') {
     $sql_data_array['products_last_modified'] = 'now()';
-    $sql_data_array['master_categories_id'] = ((int)$_POST['master_category'] > 0 ? (int)$_POST['master_category'] : (int)$_POST['master_categories_id']);
+    $sql_data_array['master_categories_id'] = (!empty($_POST['master_category']) && (int)$_POST['master_category'] > 0 ? (int)$_POST['master_category'] : (int)$_POST['master_categories_id']);
 
     zen_db_perform(TABLE_PRODUCTS, $sql_data_array, 'update', "products_id = " . (int)$products_id);
 

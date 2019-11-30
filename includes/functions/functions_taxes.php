@@ -3,10 +3,10 @@
  * functions_taxes
  *
  * @package functions
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: lat9 Fri Nov 9 09:32:23 2018 -0500 Modified in v1.5.6 $
+ * @version $Id: DrByte 2019 May 26 Modified in v1.5.6b $
  */
 
 ////
@@ -139,7 +139,7 @@
     global $db;
     // -----
     // Give an observer the chance to override this function's return.
-    //
+    // It is *intended* to be an empty string; this is not a bug.
     $rates_array = '';
     $GLOBALS['zco_notifier']->notify(
         'NOTIFY_ZEN_GET_MULTIPLE_TAX_RATES_OVERRIDE',
@@ -295,6 +295,7 @@
         return $tax_address;
     }
     
+    $tax_address = array();
     global $db;
     switch (STORE_PRODUCT_TAX_BASIS) {
 

@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- *  $Id: featured.php  Modified in v1.5.6 $
+ * @version $Id: DrByte 2019 Jul 16 Modified in v1.5.6c $
  */
 require('includes/application_top.php');
 
@@ -244,7 +244,7 @@ if (zen_not_null($action)) {
         </script>
         <div class="row"><?php echo zen_draw_separator('pixel_trans.gif', '100%', '5'); ?></div>
         <div class="row">
-            <?php echo zen_draw_form('new_featured', FILENAME_FEATURED, zen_get_all_get_params(array('action', 'info', 'fID')) . 'action=' . $form_action . '&go_back=' . $_GET['go_back'], 'post', 'class="form-horizontal"'); ?>
+            <?php echo zen_draw_form('new_featured', FILENAME_FEATURED, zen_get_all_get_params(array('action', 'info', 'fID')) . 'action=' . $form_action . '&go_back=' . $_GET['go_back'], 'post', 'onsubmit="return check_dates(start,StartDate.required, end, EndDate.required);" class="form-horizontal"'); ?>
             <?php
             if ($form_action == 'update') {
               echo zen_draw_hidden_field('featured_id', $_GET['fID']);
@@ -321,7 +321,7 @@ if (zen_not_null($action)) {
 
 // Split Page
 // reset page when page is unknown
-                    if (($_GET['page'] == '1' or $_GET['page'] == '') and $_GET['fID'] != '') {
+                    if ((empty($_GET['page']) || $_GET['page'] == '1') && !empty($_GET['fID'])) {
                       $old_page = $_GET['page'];
                       $check_page = $db->Execute($featured_query_raw);
                       if ($check_page->RecordCount() > MAX_DISPLAY_SEARCH_RESULTS_FEATURED_ADMIN) {
@@ -358,7 +358,7 @@ if (zen_not_null($action)) {
                       if (isset($fInfo) && is_object($fInfo) && ($featured_line['featured_id'] == $fInfo->featured_id)) {
                         echo '                  <tr id="defaultSelected" class="dataTableRowSelected"  onclick="document.location.href=\'' . zen_href_link(FILENAME_FEATURED, 'page=' . $_GET['page'] . '&fID=' . $fInfo->featured_id . '&action=edit' . (isset($_GET['search']) ? '&search=' . $_GET['search'] : '')) . '\'" role="button">' . "\n";
                       } else {
-                        echo '                  <tr class="dataTableRow"" onclick="document.location.href=\'' . zen_href_link(FILENAME_FEATURED, 'page=' . $_GET['page'] . '&fID=' . $featured_line['featured_id'] . '&action=edit' . (isset($_GET['search']) ? '&search=' . $_GET['search'] : '')) . '\'" role="button">' . "\n";
+                        echo '                  <tr class="dataTableRow" onclick="document.location.href=\'' . zen_href_link(FILENAME_FEATURED, 'page=' . $_GET['page'] . '&fID=' . $featured_line['featured_id'] . '&action=edit' . (isset($_GET['search']) ? '&search=' . $_GET['search'] : '')) . '\'" role="button">' . "\n";
                       }
                       ?>
                   <td  class="dataTableContent text-right"><?php echo $featured_line['products_id']; ?></td>

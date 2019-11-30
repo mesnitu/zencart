@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: Drbyte Sat Jun 30 15:01:19 2018 -0400 Modified in v1.5.6 $
+ * @version $Id: Scott C Wilson 2019 Jan 21 Modified in v1.5.6b $
  */
 if (!defined('IS_ADMIN_FLAG'))
 {
@@ -77,9 +77,10 @@ define('HEADER_TITLE_ACCOUNT', 'Account');
 define('HEADER_TITLE_LOGOFF', 'Logoff');
 //define('HEADER_TITLE_ADMINISTRATION', 'Administration');
 
-// Define the name of your Gift Certificate as Gift Voucher, Gift Certificate, Zen Cart Dollars, etc. here for use through out the shop
-  define('TEXT_GV_NAME','Gift Certificate');
-  define('TEXT_GV_NAMES','Gift Certificates');
+// TEXT_GV_NAME, TEXT_GV_NAMES moved to gv_name.php
+if (!defined('TEXT_GV_NAME')) {
+  require DIR_WS_LANGUAGES . $_SESSION['language'] . '/' . 'gv_name.php'; 
+}
   define('TEXT_DISCOUNT_COUPON', 'Discount Coupon');
 
 // used for redeem code, redemption code, or redemption id

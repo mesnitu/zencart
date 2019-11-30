@@ -1,10 +1,10 @@
 <?php
 /**
  * @package admin
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2019 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: mc12345678 Wed Sep 19 23:29:44 2018 -0400 Modified in v1.5.6 $
+ * @version $Id: mc12345678 2019 Jan 29 Modified in v1.5.6b $
  */
 require('includes/application_top.php');
 
@@ -503,14 +503,14 @@ if (zen_not_null($action)) {
 
           $attributes_image = new upload('attributes_image');
           $attributes_image->set_extensions(array('jpg', 'jpeg', 'gif', 'png', 'webp', 'flv', 'webm', 'ogg'));
-          $attributes_image->set_destination(DIR_FS_CATALOG_IMAGES . $_POST['img_dir']);
+          $attributes_image->set_destination(DIR_FS_CATALOG_IMAGES . (isset($_POST['img_dir']) ? $_POST['img_dir']: ''));
           if ($attributes_image->parse() && $attributes_image->save($_POST['overwrite'])) {
             $attributes_image_name = ($attributes_image->filename != 'none' ? ($_POST['img_dir'] . $attributes_image->filename) : '');
           } else {
             $attributes_image_name = ((isset($_POST['attributes_previous_image']) && !(isset($_POST['attributes_image']) && $_POST['attributes_image'] == 'none')) ? $_POST['attributes_previous_image'] : '');
           }
 
-          if ($_POST['image_delete'] == 1) {
+          if (isset($_POST['image_delete']) && $_POST['image_delete'] == 1) {
             $attributes_image_name = '';
           }
 
@@ -954,7 +954,7 @@ function zen_js_option_values_list($selectedName, $fieldName) {
       if ($action == 'attribute_features_copy_to_category') {
         ?>
         <div class="row">
-            <?php zen_draw_form('product_copy_to_category', FILENAME_ATTRIBUTES_CONTROLLER, 'action=update_attributes_copy_to_category', 'post', 'class="form-horizontal"'); ?>
+            <?php echo zen_draw_form('product_copy_to_category', FILENAME_ATTRIBUTES_CONTROLLER, 'action=update_attributes_copy_to_category', 'post', 'class="form-horizontal"'); ?>
             <?php echo zen_draw_hidden_field('products_filter', $_GET['products_filter']); ?>
             <?php echo zen_draw_hidden_field('products_id', $_GET['products_filter']); ?>
             <?php echo zen_draw_hidden_field('products_update_id', $_GET['products_update_id']); ?>
